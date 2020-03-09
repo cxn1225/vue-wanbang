@@ -45,6 +45,7 @@ export default {
 
 <style scoped>
 .shopList ul{
+  
   list-style: none;
   padding: 0;
   margin: 0;
