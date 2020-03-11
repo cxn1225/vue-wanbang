@@ -23,12 +23,12 @@ export default {
   name: 'app-head',
   data(){
     return {
-      isLogin:JSON.parse(sessionStorage.getItem('isLogin'))
+      isLogin:JSON.parse(localStorage.getItem('isLogin'))
     }
   },
   methods:{
     noLogin(){
-      sessionStorage.setItem('isLogin', false)
+      localStorage.setItem('isLogin', false)
       window.location.reload()
     }
   }

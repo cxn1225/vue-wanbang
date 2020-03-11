@@ -12,7 +12,7 @@ export default {
     ...mapGetters(['isLogin'])
   },
   beforeRouteEnter: (to, from, next) => {
-    if(sessionStorage.getItem('isLogin') === '2'){
+    if(localStorage.getItem('isLogin') === '2'){
       next()
     }else {
       next('/login')

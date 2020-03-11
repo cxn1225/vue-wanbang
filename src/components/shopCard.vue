@@ -1,35 +1,19 @@
 <template>
     <div class="shopList">
       <ul>
-        <li class="shopItem">
+        <li v-for="(item, index) in shopList" :key="index" class="shopItem">
           <div class="img">
-            <img src="@images/shopBrand1_1.webp" alt="">
+            <img v-if="item.img != null" :src="require(`../assets/images/${item.img}`)" alt="">
           </div>
           <div class="context">
             <p class="p1">
-              <span class="sp1">￥512.00<span>包邮</span></span>
-              <span class="sp2">111+万付款</span>
+              <span class="sp1">￥{{item.shopPrice}}<span v-if="item.isMail == 1">包邮</span></span>
+              <span class="sp2">{{item.paymentNumber}}付款</span>
             </p>
-            <p class="p2">【38预售】雅诗兰黛小棕瓶熬夜眼霜15ml 淡化细纹黑眼圈</p>
+            <p class="p2">{{item.shopDescribe}}</p>
             <p class="p3">
-              <span class="sp1">雅诗兰黛官方旗舰店</span>
-              <span class="sp2">上海</span>
-            </p>
-          </div>
-        </li>
-        <li class="shopItem">
-          <div class="img">
-            <img src="@images/shopBrand1_1.webp" alt="">
-          </div>
-          <div class="context">
-            <p class="p1">
-              <span class="sp1">￥512.00<span>包邮</span></span>
-              <span class="sp2">111+万付款</span>
-            </p>
-            <p class="p2">【38预售】雅诗兰黛小棕瓶熬夜眼霜15ml 淡化细纹黑眼圈</p>
-            <p class="p3">
-              <span class="sp1">雅诗兰黛官方旗舰店</span>
-              <span class="sp2">上海</span>
+              <span class="sp1">{{item.storeFront}}</span>
+              <span class="sp2">{{item.position}}</span>
             </p>
           </div>
         </li>
@@ -40,6 +24,11 @@
 <script>
 export default {
   name: '',
+  props:["shopList"],
+  data(){
+    return {
+    }
+  }
 }
 </script>
 
@@ -55,17 +44,21 @@ export default {
   margin-top: 10px;
 }
 .shopList ul li{
-  width: 250px;
+  width: 241px;
   border: 1px solid #ccc;
   margin: 10px;
+  cursor: pointer;
 }
 .shopItem .img{
-  width: 250px;
-  height: 250px;
+  width: 240px;
+  height: 240px;
 }
 .shopItem .img img{
   width: 100%;
   height: 100%;
+}
+.context {
+  padding-bottom: 10px;
 }
 .context p{
   padding: 0 10px;

@@ -52,7 +52,8 @@ export default {
   },
   methods:{
     submit(){
-      if(sessionStorage.getItem('isLogin') !== 'false'){
+      console.log(localStorage.getItem('isLogin'))
+      if(localStorage.getItem('isLogin') !== 'false' && localStorage.getItem('isLogin') !== null){
         this.$message('您已登录');
         return 0
       }
@@ -70,12 +71,12 @@ export default {
           this.$store.dispatch("setIsLoginAsync", true)  // 改变vuex登录状态
 
           if(result.data.data[0].type === '1'){   // 判断用户类型
-            sessionStorage.setItem('isLogin', '1')   // 修改本地储存
+            localStorage.setItem('isLogin', '1')   // 修改本地储存
             this.$router.push('/admin')
           }else if(result.data.data[0].type === '2'){
             this.$store.dispatch("setuserIdAsync", result.data.data[0].id)  // 改变vuex用户id
-            sessionStorage.setItem('isLogin', '2')   // 修改本地储存
-            sessionStorage.setItem('userId', result.data.data[0].id)   // 修改本地储存
+            localStorage.setItem('isLogin', '2')   // 修改本地储存
+            localStorage.setItem('userId', result.data.data[0].id)   // 修改本地储存
             this.$router.push('/')
           }
 
