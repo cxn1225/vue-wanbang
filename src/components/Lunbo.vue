@@ -41,7 +41,7 @@ export default {
         },
         //自动轮播
         autoplay: {
-          delay: 1200,
+          delay: 2000,
           disableOnInteraction: false,
         },
         //开启循环模式

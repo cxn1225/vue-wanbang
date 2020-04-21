@@ -43,6 +43,31 @@ export default new Router({
       path: '/brand',    // 品牌
       name: 'brand',
       component: () => import('./views/Brand.vue')
+    },
+    {
+      path: '/details',    // 商品详情
+      name: 'details',
+      component: () => import('./views/Details.vue')
+    },
+    {
+      path: '/myself',    // 我的
+      name: 'myself',
+      component: () => import('./views/MySelf.vue')
+    },
+    {
+      path: '/pay',    // 支付页面
+      name: 'pay',
+      component: () => import('./views/Pay.vue')
+    },
+    {
+      path: '/payDone',    // 支付成功
+      name: 'payDone',
+      component: () => import('./views/PayDone.vue')
+    },
+    {
+      path: '/MyShopDetails',    // 支付成功
+      name: 'MyShopDetails',
+      component: () => import('./views/MyShopDetails.vue')
     }
   ]
 })

@@ -1,7 +1,10 @@
 <template>
   <div class="div">
     <div class="login-window">
-      <h4>免费注册</h4>
+      <h4>
+        免费注册
+        <span class="back" @click="backHome">返回>></span>
+      </h4>
       <div class="input">
         <el-input placeholder="请输入内容" v-model="user.userName">
           <template slot="prepend">账 号</template>
@@ -51,6 +54,9 @@ export default {
           this.$router.push('/login')
         }
       })
+    },
+    backHome(){
+      this.$router.push('/')
     }
   }
 }
@@ -69,6 +75,14 @@ export default {
   top: 180px;
   padding: 0 15px 20px 15px;
   border-radius: 5px;
+}
+.back{
+  position: absolute;
+  right: 20px;
+  color: #00E;
+  font-weight: 100;
+  font-size: 14px;
+  cursor: pointer;
 }
 .input{
   margin-bottom: 15px;

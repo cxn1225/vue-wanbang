@@ -21,6 +21,6 @@ export default {
     margin: 0;
   }
   #view{
-    min-height: 100vh;
+    min-height: 87vh;
   }
 </style>

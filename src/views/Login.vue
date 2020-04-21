@@ -1,7 +1,10 @@
 <template>
   <div class="div">
     <div class="login-window">
-      <h4>密码登录</h4>
+      <h4>
+        密码登录
+        <span class="back" @click="backHome">返回>></span>
+      </h4>
       <div class="input">
         <el-input placeholder="请输入内容" v-model="user.userName">
           <template slot="prepend">账 号</template>
@@ -73,10 +76,12 @@ export default {
           if(result.data.data[0].type === '1'){   // 判断用户类型
             localStorage.setItem('isLogin', '1')   // 修改本地储存
             this.$router.push('/admin')
+            localStorage.setItem('userName', result.data.data[0].name)
           }else if(result.data.data[0].type === '2'){
             this.$store.dispatch("setuserIdAsync", result.data.data[0].id)  // 改变vuex用户id
             localStorage.setItem('isLogin', '2')   // 修改本地储存
             localStorage.setItem('userId', result.data.data[0].id)   // 修改本地储存
+            localStorage.setItem('userName', result.data.data[0].name)
             this.$router.push('/')
           }
 
@@ -84,6 +89,9 @@ export default {
           this.$message('用户名或密码错误');
         }
       })
+    },
+    backHome(){
+      this.$router.push('/')
     }
   }
 }
@@ -102,6 +110,14 @@ export default {
   top: 180px;
   padding: 0 15px 20px 15px;
   border-radius: 5px;
+}
+.back{
+  position: absolute;
+  right: 20px;
+  color: #00E;
+  font-weight: 100;
+  font-size: 14px;
+  cursor: pointer;
 }
 .input, .select{
   margin-bottom: 15px;

@@ -11,7 +11,7 @@
       <li>合作商</li>
     </ul>
     <ul class="footer-ul">
-      <li>版权所有：1614010219池晓宁</li>
+      <li>版权所有：中北大学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;技术支持：1614010219池晓宁</li>
     </ul>
   </div>
 </template>

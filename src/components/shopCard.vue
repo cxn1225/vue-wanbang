@@ -1,7 +1,7 @@
 <template>
     <div class="shopList">
       <ul>
-        <li v-for="(item, index) in shopList" :key="index" class="shopItem">
+        <li v-for="(item, index) in shopList" :key="index" @click="details(item)" class="shopItem">
           <div class="img">
             <img v-if="item.img != null" :src="require(`../assets/images/${item.img}`)" alt="">
           </div>
@@ -10,7 +10,7 @@
               <span class="sp1">￥{{item.shopPrice}}<span v-if="item.isMail == 1">包邮</span></span>
               <span class="sp2">{{item.paymentNumber}}付款</span>
             </p>
-            <p class="p2">{{item.shopDescribe}}</p>
+            <p class="p2"><a href="#">{{item.shopDescribe}}</a></p>
             <p class="p3">
               <span class="sp1">{{item.storeFront}}</span>
               <span class="sp2">{{item.position}}</span>
@@ -27,6 +27,11 @@ export default {
   props:["shopList"],
   data(){
     return {
+    }
+  },
+  methods:{
+    details(item){
+      this.$router.push({name:'details', params: {shop: item}});
     }
   }
 }
@@ -50,8 +55,8 @@ export default {
   cursor: pointer;
 }
 .shopItem .img{
-  width: 240px;
-  height: 240px;
+  width: 241px;
+  height: 241px;
 }
 .shopItem .img img{
   width: 100%;
@@ -70,6 +75,13 @@ export default {
 }
 .context .p2{
   margin: 10px 0 0 0;
+}
+.context .p2 a{
+  text-decoration: none;
+  color: #000;
+}
+.context .p2 a:hover{
+  color: tomato;
 }
 .context .p1 .sp1{
   float: left;
