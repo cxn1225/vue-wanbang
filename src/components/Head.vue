@@ -13,7 +13,7 @@
       <el-menu-item index="4"><router-link to='register'>注册</router-link></el-menu-item>
       <el-menu-item index="5"><router-link to='shopcar'>购物车</router-link></el-menu-item>
       <el-menu-item index="6"><router-link to='feedback'>意见反馈</router-link></el-menu-item>
-      <el-menu-item index="7" v-if="isLogin"><router-link to='myself'>我的</router-link></el-menu-item>
+      <el-menu-item index="7" v-if="userId !== ''"><router-link to='myself'>我的</router-link></el-menu-item>
     </el-menu>
   </div>
 </template>
@@ -24,7 +24,8 @@ export default {
   name: 'app-head',
   data(){
     return {
-      isLogin:JSON.parse(localStorage.getItem('isLogin')),
+      isLogin: JSON.parse(localStorage.getItem('isLogin')),
+      userId: localStorage.getItem('userId'),
       userName: ''
     }
   },

@@ -25,11 +25,11 @@
           <p>
             <span class="item-detail-express">校园配送</span>{{details.shopDescribe}}</p>
         </div>
-        <div class="item-detail-tag">
+        <!-- <div class="item-detail-tag">
           <p>
             <span v-for="(item, index) in details.notes.split('-')" :key='index'>【{{item}}】</span>
           </p>
-        </div>
+        </div> -->
         <div class="address">
           收货地址：
           <el-select v-model="addressValue" @change='change' placeholder="请选择">
@@ -136,41 +136,49 @@ export default {
       this.color = color
     },
     addShopCar(){
-      let data = {
-        imgUrl: this.details.img,
-        userId: Number(localStorage.getItem('userId')),
-        shopName: this.details.shopName,
-        shopDescribe: this.details.shopDescribe,
-        shopPrice: this.details.shopPrice,
-        number: this.num1,
-        shopId: this.details.id,
-        commentId: this.details.commentId,
-        color: this.color
-      }
-      this.$axios.post(`api/addShopCar`, data).then(result => {
-        this.$message(`${result.data.data}, 即将跳转到购物车`);
-        setTimeout(() => {
-          this.$router.push('/ShopCar')
-        }, 1000)
-      })
-    },
-    purchase(){
-      if(!this.addCheck.id){
-        this.$message('请选择收货地址')
+      if(localStorage.getItem('userId') == ''){
+        this.$message('账号类型有误, 无法添加！')
       } else {
         let data = {
-          id: '',
           imgUrl: this.details.img,
           userId: Number(localStorage.getItem('userId')),
           shopName: this.details.shopName,
           shopDescribe: this.details.shopDescribe,
           shopPrice: this.details.shopPrice,
           number: this.num1,
-          shopId: `${this.details.shopName}_${this.details.id}`,
+          shopId: this.details.id,
           commentId: this.details.commentId,
           color: this.color
         }
-        this.$router.push({ name: 'pay', params: { shopList: [data], address: this.addCheck, remarks: '' } })
+        this.$axios.post(`api/addShopCar`, data).then(result => {
+          this.$message(`${result.data.data}, 即将跳转到购物车`);
+          setTimeout(() => {
+            this.$router.push('/ShopCar')
+          }, 1000)
+        })
+      }
+    },
+    purchase(){
+      if(localStorage.getItem('userId') == ''){
+        this.$message('账号类型有误，无法购买！')
+      } else {
+        if(!this.addCheck.id){
+        this.$message('请选择收货地址')
+        } else {
+          let data = {
+            id: '',
+            imgUrl: this.details.img,
+            userId: Number(localStorage.getItem('userId')),
+            shopName: this.details.shopName,
+            shopDescribe: this.details.shopDescribe,
+            shopPrice: this.details.shopPrice,
+            number: this.num1,
+            shopId: `${this.details.shopName}_${this.details.id}`,
+            commentId: this.details.commentId,
+            color: this.color
+          }
+          this.$router.push({ name: 'pay', params: { shopList: [data], address: this.addCheck, remarks: '' } })
+        }
       }
     }
   }

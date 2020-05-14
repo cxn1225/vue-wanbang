@@ -49,7 +49,7 @@ export default {
           commentId: this.shopData.commentId,
           name: localStorage.getItem('userName'),
           context: this.textarea,
-          time: this.$moment(new Date()).format("YYYY-DD-MM"),
+          time: this.$moment(new Date()).format("YYYY-MM-DD"),
           rate: this.value,
           userId: Number(localStorage.getItem('userId'))
         }

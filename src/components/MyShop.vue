@@ -40,6 +40,14 @@
           prop="zongjia"
           label="总价">
         </el-table-column>
+        <el-table-column
+          prop="state"
+          label="状态">
+          <template scope="scope">
+            <span v-if="scope.row.state === 0">未发货</span>
+            <span v-if="scope.row.state === 1">已取件</span>
+    　　  </template>
+        </el-table-column>
       </el-table>
     </div>
   </div>

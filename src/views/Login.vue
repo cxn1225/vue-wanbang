@@ -11,7 +11,7 @@
         </el-input>
       </div>
       <div class="input">
-        <el-input placeholder="请输入内容" v-model="user.passWord">
+        <el-input type="password" placeholder="请输入内容" v-model="user.passWord">
           <template slot="prepend">密 码</template>
         </el-input>
       </div>

@@ -53,6 +53,18 @@
     　　  </template>
         </el-table-column>
       </el-table>
+      <!-- 确认删除 -->
+      <el-dialog
+        title="提示"
+        :visible.sync="centerDialogVisible"
+        width="30%"
+        center>
+        <span>确定要删除该项</span>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="centerDialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="deleteShop">确 定</el-button>
+        </span>
+      </el-dialog>
       <div class="address-container">
         <h3>收件人地址</h3>
         <div class="address-box">
@@ -98,7 +110,9 @@ export default {
       addressValue: '',
       remarks:'',
       totalPrice: 0,
-      shopList: []
+      shopList: [],
+      centerDialogVisible: false,
+      row: {}
     }
   },
   created(){
@@ -141,7 +155,12 @@ export default {
       this.totalPrice = totalPrice
     },
     handleDelete(index, row){
-      this.$axios.get(`api/deleteShopOfCar?id=${row.id}`,).then(result => {
+      this.centerDialogVisible = true
+      this.row = row
+    },
+    deleteShop(){
+      this.centerDialogVisible = false
+      this.$axios.get(`api/deleteShopOfCar?id=${this.row.id}`,).then(result => {
         if(result.status === 200){
           this.$message('删除成功')
           this.getData()

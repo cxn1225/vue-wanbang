@@ -6,6 +6,9 @@
           <el-form-item label="用户名：">
             <el-input disabled v-model="userName"></el-input>
           </el-form-item>
+          <el-form-item label="昵称：">
+            <el-input v-model="name"></el-input>
+          </el-form-item>
           <el-form-item label="旧密码：">
             <el-input v-model="oldPass"></el-input>
           </el-form-item>
@@ -136,6 +139,7 @@ export default {
   data(){
     return {
       userName: '',
+      name: '',
       password: '',
       oldPass: '',
       newPass: '',
@@ -185,7 +189,7 @@ export default {
       if(this.oldPass == this.newPass){
         this.$message('新旧密码不能相同');
       } else{
-        this.$axios.get(`api/modifyPass?username=${this.userName}&password=${this.newPass}`,).then(result => {
+        this.$axios.get(`api/modifyPass?username=${this.userName}&password=${this.newPass}&name=${this.name}`,).then(result => {
         console.log(result.data)
         if(result.data.msg === 'success'){
           this.$message('修改成功，请重新登录')

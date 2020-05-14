@@ -44,7 +44,7 @@ export default {
       } else if(!this.textarea){
         this.$message('请输入内容')
       } else {
-        this.$axios.post('api/addFeedBack', { userId: Number(localStorage.getItem('userId')), textarea: this.textarea, title: this.title }).then(result => {
+        this.$axios.post('api/addFeedBack', { userId: Number(localStorage.getItem('userId')), textarea: this.textarea, title: this.title, date: this.$moment(new Date()).format("YYYY-MM-DD"), userName: localStorage.getItem('userName') }).then(result => {
           if(result.status === 200){
             this.$message('提交成功')
             this.title = ''

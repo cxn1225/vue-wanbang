@@ -11,12 +11,17 @@
         </el-input>
       </div>
       <div class="input">
-        <el-input placeholder="请输入内容" v-model="user.passWord">
+        <el-input placeholder="请输入内容" v-model="user.name">
+          <template slot="prepend">昵 称</template>
+        </el-input>
+      </div>
+      <div class="input">
+        <el-input type="password" placeholder="请输入内容" v-model="user.passWord">
           <template slot="prepend">密 码</template>
         </el-input>
       </div>
       <div class="input">
-        <el-input placeholder="请输入内容" v-model="user.passWord2">
+        <el-input type="password" placeholder="请输入内容" v-model="user.passWord2">
           <template slot="prepend">确认密码</template>
         </el-input>
       </div>
@@ -35,7 +40,8 @@ export default {
       user:{
         userName:'',
         passWord:'',
-        passWord2:''
+        passWord2:'',
+        name: ''
       }
     }
   },
